@@ -1,0 +1,44 @@
+0-Create a New Folder for Our Environment 
+
+1-Create New Django Project inside this folder ,and call it "config" , this will act as the main App . 
+
+2-Now you Have a Newly Created Django Project which includes the auth app , NEVER EVER run migrations for Now till we Customize the model we want 
+    -The User model is Connected to Many things in Djano , You Will see now When we Customise it we will also Customize some stuff for the Admin Panel also  && Customize Some FORMS ! 
+
+3-Create new App "accounts" this will extend the default User Model But we will set it as out Default User model ; 
+    1-Add the accounts app to installed_apps List in settings.py 
+    2-Create a CustomUser Model in accounts app , This CustomUser inherits from AbstractUser Model , Inside settings.py file Define this New Model as our Default User mode 
+    // AUTH_USER_MODEL = 'accounts.CustomUser'
+
+4-Now inside your model , you Can define the Extra fields you want in your Use model , For me i will Put two fields [Mobile Number && is_merchant flag && city ]
+    --- I will Make another Tweak Here too to Define email instead of the "username" for the user to log in using it .
+    --This Tweak will be in a Comment Till We Make another Level Of User Customization  ; 
+
+
+5-Now Create new "forms.py" file inside accounts app , We need to EXTEND  the Forms Of (Creation & Edit ) so that those forms now include the Newly added fields [like phone Number] , EXTENDING MEANS we will inherit the forms and Add on top of them  . 
+Those Forms will be used for "Sign up " and Editing also .
+Below are the Forms we will extend in our forms.py file 
+//from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+[[[ GENERAL TIP ABOUT FORMS ]]]
+When We make a View, we either specify [Model & fields] and Those fields will be sent to the template OR we Have another Solution 
+--another Solution :: Send a form Class Which will take care of all this . 
+BUT a form Class ALWAYS has a META calss Which includes those Two fields also [Model & fields] ,,, You Chose what you Want .
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+
+6-Now We Customized forms , We said before the Default User Model is Coupled to Many things tightly ,,, So Extending and CUstimizeing it Means Customize other things ,, One of them is the admin ,, you know we Can create Users or edit them in admin Panel ! So lets do it 
+
+6.1 - In admin.py file we Will CUstimize the "UserAdmin" Class , UserAdmin is the adminstratig the User ,, Again the boilerPlate is Clear , we use the Custom forms and Newly Custom user Model for Our Custom "UserAdmin" 
+EVERYTHING IS CUSTOM NOW ! 
+
+
+
+$$ now make the migrations & create SuperUser to Check & Move to Custom-Steps_2.txt For Final Small Steps  .
+
+
+
+

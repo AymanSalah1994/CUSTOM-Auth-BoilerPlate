@@ -1,0 +1,40 @@
+1-First include the Auth URLS and Accounts urls  inside your Main urls.py file inside your Config App 
+//path('accounts/', include('accounts.urls')), 
+>> Don't Forget to Create urls.py file for this app
+//path('accounts/', include('django.contrib.auth.urls')),
+
+2-Now if you Visit any Sub-URL for "http://127.0.0.1:8000/accounts/"  The Site Actually work , Although you MIGHT get an Error Because For example for "log in " We MUST Create Template for it inside a Folder called registration --> "registration/login.html"
+PLUS we didn't Specify what View to Respond to this Url Above ?
+ 
+
+3-Configure the Templates Folder inside your settings.py file 
+// DIRS = [str(BASE_DIR.joinpath('templates'))]
+
+4-Now Create a 'templates' Folder . && Inside it Create "registration" folder too 
+
+
+5-In this registration Folder you Will put the templates files, Make Sure names are correct so that Django will detect them Automatically . 
+Some of those files are below :
+{log.html ,   password_reset_done.html  ,  password_change_done.html  ....ETC } Remeber for those templates you MUST stick with certain Named So that the Auth app Can Detect them  .
+// You Can Also create Signup.html Template , But you Can call this anything Since We are Not waiting for something to Detect it ! 
+
+
+6-If you Visit the Urls after Creating Template you will find Nothing , because your templates are empty , In general Keep in mind that , for login for example the LoginView will send A form Object Right ?
+So in your login.html file Put this form Object  to be shown ,, password_change will include some kind of form for changing password So we need to put the form object also and SO ON ...ETC
+{{ form.as_p }} <<Writing Only this inside logn.html is Enough to show the Form on the browser ! 
+
+
+7-Now Just a Couple of Environment Variable that you Need to put in your settings.py file 
+    -LOGIN_REDIRECT_URL = 'home' # home is a Name of a View for redirect
+    -LOGOUT_REDIRECT_URL = 'home' # home is a Name of a View for redirect
+
+
+
+Q / Sign-up ?
+A /DO this : 
+    1-Inside urls.py in this app [Actually you Will Create this urls.py file], define a path for '/signup'
+    2-Define the SignUp View [ Form , Template and Success URL ]
+        1-success_url
+        2-the form_class 
+        3-template_name for this View 
+    
